@@ -37,29 +37,33 @@ public class Movement : MonoBehaviour
         int Bottom = Convert.ToInt32(FaceandBottomandRight[1]);
         int Right = Convert.ToInt32(FaceandBottomandRight[2]);
 
+        int NewFace;
+        int NewBottom;
+        int NewRight;
+
         if (action == "TurnUp")
         {
-            int NewFace = 7 - Bottom;
-            int NewBottom = Face;
-            int NewRight = Right;
+            NewFace = 7 - Bottom;
+            NewBottom = Face;
+            NewRight = Right;
         }
         else if (action == "TurnRight")
         {
-            int NewFace = 7 - Right;
-            int NewBottom = Bottom;
-            int NewRight = Face;
+            NewFace = 7 - Right;
+            NewBottom = Bottom;
+            NewRight = Face;
         }
         else if (action == "TurnDown")
         {
-            int NewFace = Bottom;
-            int NewBottom = 7 - Face;
-            int NewRight = Right;
+            NewFace = Bottom;
+            NewBottom = 7 - Face;
+            NewRight = Right;
         }
         else if (action == "TurnLeft")
         {
-            int NewFace = Right;
-            int NewBottom = Bottom;
-            int NewRight = 7 - Face;
+            NewFace = Right;
+            NewBottom = Bottom;
+            NewRight = 7 - Face;
         }
         else
         {
