@@ -53,7 +53,6 @@ public class Movement : MonoBehaviour
             turnSelectionMenu = Instantiate(turnSelectionUIPrefab);
             RollSelectorManager selectorManager = turnSelectionMenu.GetComponent<RollSelectorManager>();
             selectorManager.currentDie = new Die(theTile, tilePos);
-            selectorManager.player = gameObject;
 
             return;
         }
