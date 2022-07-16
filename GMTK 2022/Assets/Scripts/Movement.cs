@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public string AmongUs(string FaceandBottomandRight, string action)
+    public string TurnDice(string FaceandBottomandRight, string action)
     {
         // the first incoming variable is the face that the user can see, and the face below that and to the side (facing toward the lower part of the monitor), 
         // and the face to the right on the side (facing the right side)
