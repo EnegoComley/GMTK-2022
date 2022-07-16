@@ -37,17 +37,17 @@ public class RollSelectorManager : MonoBehaviour
         agent.CalculatePath(leftPos, leftPath);
         NavMeshPath rightPath = new NavMeshPath();
         agent.CalculatePath(rightPos, rightPath);
-        if(downPath.status != NavMeshPathStatus.PathComplete  && upPath.status != NavMeshPathStatus.PathComplete)
+        if((downPath.status != NavMeshPathStatus.PathComplete || Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(downPos)) != null)  && (upPath.status != NavMeshPathStatus.PathComplete || Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(upPos)) != null))
         {
             upButton.GetComponent<Button>().interactable = false;
             downButton.GetComponent<Button>().interactable = false;
         }
-        if (leftPath.status != NavMeshPathStatus.PathComplete && rightPath.status != NavMeshPathStatus.PathComplete)
+        if ((leftPath.status != NavMeshPathStatus.PathComplete || Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(leftPos)) != null) && (rightPath.status != NavMeshPathStatus.PathComplete || Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(rightPos)) != null))
         {
             leftButton.GetComponent<Button>().interactable = false;
             rightButton.GetComponent<Button>().interactable = false;
         }
-        Debug.Log(leftPath.status != NavMeshPathStatus.PathComplete);
+        
        
     }
 

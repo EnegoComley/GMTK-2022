@@ -9,12 +9,13 @@ public class Movement : MonoBehaviour
 {
     static public Movement player;
     // Start is called before the first frame update
-    Tilemap diceMap;
+    public Tilemap diceMap;
     public NavMeshAgent agent;
     public TileBase debugBase;
     public GameObject turnSelectionUIPrefab;
     public GameObject turnSelectionMenu;
-    
+
+
     void Start()
     {
         if (player != null)
