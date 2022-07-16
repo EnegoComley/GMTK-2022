@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
 using UnityEngine.UI;
+using UnityEngine.AI;
 public class RollSelectorManager : MonoBehaviour
 {
     public Sprite[] faces;
@@ -22,6 +23,32 @@ public class RollSelectorManager : MonoBehaviour
         downButton.GetComponent<Image>().sprite = faces[currentDie.bottom - 1];
         leftButton.GetComponent<Image>().sprite = faces[6 - currentDie.right];
         rightButton.GetComponent<Image>().sprite = faces[currentDie.right - 1];
+
+        NavMeshAgent agent = Movement.player.agent;
+        Vector3 upPos = Vector3Int.FloorToInt(currentDie.pos) + new Vector3(0.5f, 1.5f, 0);
+        Vector3 downPos = Vector3Int.FloorToInt(currentDie.pos) + new Vector3(0.5f, -0.5f, 0);
+        Vector3 leftPos = Vector3Int.FloorToInt(currentDie.pos) + new Vector3(-0.5f, 0.5f, 0);
+        Vector3 rightPos = Vector3Int.FloorToInt(currentDie.pos) + new Vector3(1.5f, 0.5f, 0);
+        NavMeshPath upPath = new NavMeshPath();
+        agent.CalculatePath(upPos, upPath);
+        NavMeshPath downPath = new NavMeshPath();
+        agent.CalculatePath(downPos, downPath);
+        NavMeshPath leftPath = new NavMeshPath();
+        agent.CalculatePath(leftPos, leftPath);
+        NavMeshPath rightPath = new NavMeshPath();
+        agent.CalculatePath(rightPos, rightPath);
+        if(downPath.status != NavMeshPathStatus.PathComplete  && upPath.status != NavMeshPathStatus.PathComplete)
+        {
+            upButton.GetComponent<Button>().interactable = false;
+            downButton.GetComponent<Button>().interactable = false;
+        }
+        if (leftPath.status != NavMeshPathStatus.PathComplete && rightPath.status != NavMeshPathStatus.PathComplete)
+        {
+            leftButton.GetComponent<Button>().interactable = false;
+            rightButton.GetComponent<Button>().interactable = false;
+        }
+        Debug.Log(leftPath.status != NavMeshPathStatus.PathComplete);
+       
     }
 
     public void CloseMenu()
@@ -41,7 +68,7 @@ public class RollSelectorManager : MonoBehaviour
                 break;
             }
         }
-        
+        Movement.player.SetDie(tile, currentDie.pos);
         CloseMenu();
     }
 

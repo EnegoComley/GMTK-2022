@@ -48,7 +48,6 @@ public class Die
     {
         myTile = tile;
         string name = tile.name;
-        Debug.Log(name);
         face = Int32.Parse(name[0].ToString());
         bottom = Int32.Parse(name[1].ToString());
         right = Int32.Parse(name[2].ToString());
