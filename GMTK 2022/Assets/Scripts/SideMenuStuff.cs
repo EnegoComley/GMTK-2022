@@ -33,7 +33,7 @@ public class SideMenuStuff : MonoBehaviour
         TileBase theTile = diceMap.GetTile(tilePos);
 
 
-        if (theTile != null)
+        if (theTile != null && Movement.player.turnSelectionMenu == null)
         {
             Die newDie = new Die(theTile, tilePos);
 

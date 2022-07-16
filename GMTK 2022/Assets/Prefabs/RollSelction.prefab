@@ -734,13 +734,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b863a78a1f7f69f47982575664a060d0, type: 3}
   - {fileID: 21300000, guid: 9176361a359bc9d4ca04169e6fd66469, type: 3}
   - {fileID: 21300000, guid: fabba845aa825d249a9807fbc2b66f84, type: 3}
-  - {fileID: 21300000, guid: 18f0e909ab6eaec48a358b1b1cf3f587, type: 3}
+  - {fileID: 21300000, guid: fb1030e2caee12e42b5d1bdfade8f549, type: 3}
   centerButton: {fileID: 3904325427144592373}
   upButton: {fileID: 3904325427267926154}
   downButton: {fileID: 3904325427514211723}
   leftButton: {fileID: 3904325427368381397}
   rightButton: {fileID: 3904325427993042356}
-  player: {fileID: 0}
 --- !u!1 &3904325427993042356
 GameObject:
   m_ObjectHideFlags: 0
