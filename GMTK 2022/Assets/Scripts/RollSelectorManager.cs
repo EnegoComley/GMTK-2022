@@ -13,12 +13,10 @@ public class RollSelectorManager : MonoBehaviour
     public GameObject downButton;
     public GameObject leftButton;
     public GameObject rightButton;
-    public GameObject player; 
     // Start is called before the first frame update
 
     void Start()
     {
-        Debug.Log(currentDie.face);
         centerButton.GetComponent<Image>().sprite = faces[currentDie.face - 1];
         upButton.GetComponent<Image>().sprite = faces[6 - currentDie.bottom];
         downButton.GetComponent<Image>().sprite = faces[currentDie.bottom - 1];
@@ -43,7 +41,7 @@ public class RollSelectorManager : MonoBehaviour
                 break;
             }
         }
-        player.GetComponent<Movement>().SetDie(tile, currentDie.pos);
+        
         CloseMenu();
     }
 

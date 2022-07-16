@@ -7,16 +7,21 @@ using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
-
+    static public Movement player;
     // Start is called before the first frame update
     Tilemap diceMap;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     public TileBase debugBase;
     public GameObject turnSelectionUIPrefab;
     public GameObject turnSelectionMenu;
     
     void Start()
     {
+        if (player != null)
+        {
+            Destroy(player);
+        }
+        player = this;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
