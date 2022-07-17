@@ -15,15 +15,18 @@ public class Movement : MonoBehaviour
     public TileBase debugBase;
     public GameObject turnSelectionUIPrefab;
     public GameObject turnSelectionMenu;
+    public GameObject NavmeshPrefab;
     public List<Fire> growingFires;
     public List<Fire> dyingFires;
+    
     
 
 
     void Start()
     {
-        GameObject.FindGameObjectWithTag("Navmesh").GetComponent<NavMeshSurface2d>().BuildNavMesh();
-
+        
+        Instantiate(NavmeshPrefab).GetComponent<NavMeshSurface2d>().BuildNavMesh();
+        
         if (player != null)
         {
             Destroy(player);
