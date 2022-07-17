@@ -69,3 +69,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1b4e54d97f90fe468061a6145688141, type: 2}
   - {fileID: 11400000, guid: 49c2d525c2d37094d867c0952c7c8d1e, type: 2}
   - {fileID: 11400000, guid: 60c5fb6e988842b45bf82e380597bc68, type: 2}
+  fireDice:
+  - {fileID: 11400000, guid: f468d7731bb275b40bb760f8ac903705, type: 2}
+  - {fileID: 11400000, guid: 06b0ed09a46c9714bbbf9d67221fefe2, type: 2}
+  - {fileID: 11400000, guid: 97d23ed8c0d45264d9e502c16718fbd2, type: 2}
+  - {fileID: 11400000, guid: 88181501980bdf348a149a7f6d4e45a8, type: 2}
+  - {fileID: 11400000, guid: 56829500d202d7343a58f5165e59ea5e, type: 2}
+  - {fileID: 11400000, guid: e3ebb914fb68a0f4da4474783a69f712, type: 2}
+  unmovableFireDice:
+  - {fileID: 11400000, guid: 7c2c662ade92c5a418b71b003b77160d, type: 2}
+  - {fileID: 11400000, guid: 6b2bb4f63685a8d408d9179e505a06d0, type: 2}
+  - {fileID: 11400000, guid: f91b33904e066f040a9a7a7e3340cfbd, type: 2}
+  - {fileID: 11400000, guid: 7ee0fc5c0f5c19944820d2e91c12fc88, type: 2}
+  - {fileID: 11400000, guid: 2ba1e745a2c83264095e015f75a2474a, type: 2}
+  - {fileID: 11400000, guid: 83da41b9abde2c847a477f31cb107988, type: 2}
