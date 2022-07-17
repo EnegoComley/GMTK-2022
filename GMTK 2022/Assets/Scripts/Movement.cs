@@ -87,6 +87,7 @@ public class Movement : MonoBehaviour
             else
             {
 
+                MainManSound.manager.PlaySoundNumber(1);
 
                 diceMap.SetTile(tileToTurn.Item1, tileToTurn.Item2);
             }
