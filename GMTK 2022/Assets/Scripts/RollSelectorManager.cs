@@ -81,20 +81,32 @@ public class RollSelectorManager : MonoBehaviour
             sides.Add(new Vector3Int(-1, 0, 0) + currentDie.pos);
         }
         NavMeshPath pathA = new NavMeshPath();
-        Movement.player.agent.CalculatePath(sides[0], pathA);
+        Movement.player.agent.CalculatePath(sides[0] + new Vector3(0.5f, 0.5f, 0), pathA);
         NavMeshPath pathB = new NavMeshPath();
-        Movement.player.agent.CalculatePath(sides[1], pathB);
+        Movement.player.agent.CalculatePath(sides[1] + new Vector3(0.5f, 0.5f, 0), pathB);
         Movement.player.agent.SetPath(pathA);
         float distanceA = Movement.player.agent.remainingDistance;
         Movement.player.agent.SetPath(pathB);
         float distanceB = Movement.player.agent.remainingDistance;
+
         if (distanceA < distanceB)
         {
-            Movement.player.agent.SetPath(pathA);
+            
+            if (pathA.status == NavMeshPathStatus.PathComplete && (Movement.player.diceMap.GetTile(sides[0]) == null && Movement.player.unmovableMap.GetTile(sides[0]) == null))
+            {
+                Movement.player.agent.SetPath(pathA);
+                
+
+            }
+
 
         }
+        if (pathB.status != NavMeshPathStatus.PathComplete || (Movement.player.diceMap.GetTile(sides[1]) != null || Movement.player.unmovableMap.GetTile(sides[1]) != null))
+        {
+            Movement.player.agent.SetPath(pathA);
+        }
         Movement.player.TurnDie(tile, currentDie.pos);
-
+        
 
         CloseMenu();
     }

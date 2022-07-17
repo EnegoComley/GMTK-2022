@@ -126,7 +126,6 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("yolol");
         if(collision.gameObject.tag == "Finish")
         {
             MainManager.manager.NextLevel();
@@ -137,7 +136,7 @@ public class Movement : MonoBehaviour
     {
 
 
-
+        Debug.Log(agent.remainingDistance);
         tileToTurn = new Tuple<Vector3Int, TileBase>(pos, tile);
     }
 
@@ -189,6 +188,7 @@ public class Fire
             Movement.player.unmovableMap.SetTile(pos, MainManager.manager.unmovableFireDice[number - 1]);
         }
         Debug.Log("Set");
+        MainManSound.manager.PlaySoundNumber(0);
     }
 
     public void Spread()

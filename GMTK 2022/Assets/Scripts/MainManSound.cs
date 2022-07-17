@@ -8,6 +8,16 @@ public class MainManSound : MonoBehaviour
     public AudioSource source;
     public AudioClip[] clips;
 
+    private void Awake()
+    {
+        if(manager != null)
+        {
+            Destroy(gameObject);
+        }
+        manager = this;
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +30,7 @@ public class MainManSound : MonoBehaviour
         
     }
 
-    void PlaySoundNumber(int number)
+    public void PlaySoundNumber(int number)
     {
         source.PlayOneShot(clips[number]);
     }
