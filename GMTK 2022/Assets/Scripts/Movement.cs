@@ -75,7 +75,7 @@ public class Movement : MonoBehaviour
                     {
                         flag = true;
                     }
-
+                     
                 }
 
             }
@@ -87,7 +87,7 @@ public class Movement : MonoBehaviour
             else
             {
 
-                MainManSound.manager.PlaySoundNumber(1);
+                //MainManSound.manager.PlaySoundNumber(1);
 
                 diceMap.SetTile(tileToTurn.Item1, tileToTurn.Item2);
             }
@@ -188,7 +188,7 @@ public class Fire
             Movement.player.unmovableMap.SetTile(pos, MainManager.manager.unmovableFireDice[number - 1]);
         }
         Debug.Log("Set");
-        MainManSound.manager.PlaySoundNumber(0);
+        //MainManSound.manager.PlaySoundNumber(0);
     }
 
     public void Spread()
