@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EnegoTesting.unity
     guid: adb81ccca00af9540a91e5dc8dd32a55
+  - enabled: 1
+    path: Assets/Scenes/SimpleLevelTime.unity
+    guid: f475199e10aa10e41a8e14a9287d1b14
+  - enabled: 1
+    path: Assets/Scenes/AnotherLvl.unity
+    guid: dfbfa49d474a6344b8983a8c98c4770d
+  - enabled: 1
+    path: Assets/Scenes/ALevel.unity
+    guid: c22c4f391aa4a2140868fa624a86242f
   m_configObjects: {}
