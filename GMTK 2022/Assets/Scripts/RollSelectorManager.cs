@@ -62,13 +62,45 @@ public class RollSelectorManager : MonoBehaviour
         TileBase tile = MainManager.manager.movableDice[0];
         foreach(TileBase x in MainManager.manager.movableDice)
         {
-            if(x.name == name)
+
+            if (x.name == name)
             {
                 tile = x;
                 break;
             }
         }
-        Movement.player.SetDie(tile, currentDie.pos);
+        Vector3Int[] sides = { new Vector3Int(1, 0, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(0, -1, 0) };
+        bool flag = false;
+        foreach (Vector3Int side in sides)
+        {
+            bool movable = false;
+            Vector3Int neighbourPos = side + currentDie.pos;
+            TileBase uTile = Movement.player.unmovableMap.GetTile(neighbourPos);
+            if (uTile != null)
+            {
+                Debug.Log(uTile.name);
+                if (uTile.name == "Fire" + name[0].ToString())
+                {
+                    Debug.Log("Yo");
+                    flag = true;
+                }
+                
+            }
+            
+        }
+        if(flag)
+        {
+
+            Movement.player.CreateFire(currentDie.pos, Int32.Parse(name[0].ToString()), true);
+        }
+        else
+        {
+            Movement.player.SetDie(tile, currentDie.pos);
+        }
+        
+
+        
+
         CloseMenu();
     }
 

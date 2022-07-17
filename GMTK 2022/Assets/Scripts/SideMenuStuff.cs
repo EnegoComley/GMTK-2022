@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using System;
 
 public class SideMenuStuff : MonoBehaviour
 {
@@ -33,12 +34,13 @@ public class SideMenuStuff : MonoBehaviour
         TileBase theTile = diceMap.GetTile(tilePos);
 
 
-        if (theTile != null && Movement.player.turnSelectionMenu == null)
+        Int32 temp;
+        if (theTile != null && Movement.player.turnSelectionMenu == null && Int32.TryParse(theTile.name[0].ToString(), out temp))
         {
+            
             Die newDie = new Die(theTile, tilePos);
 
 
-            Debug.Log(newDie.face);
             centerButton.GetComponent<Image>().sprite = faces[newDie.face - 1];
             upButton.GetComponent<Image>().sprite = faces[6 - newDie.bottom];
             downButton.GetComponent<Image>().sprite = faces[newDie.bottom - 1];

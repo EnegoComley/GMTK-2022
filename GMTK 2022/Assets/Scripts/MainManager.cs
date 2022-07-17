@@ -9,6 +9,8 @@ public class MainManager : MonoBehaviour
     public static MainManager manager;
     // Start is called before the first frame update
     public TileBase[] movableDice;
+    public TileBase[] fireDice;
+    public TileBase[] unmovableFireDice;
     
 
     private void Awake()
