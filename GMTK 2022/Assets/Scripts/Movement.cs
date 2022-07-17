@@ -136,7 +136,6 @@ public class Movement : MonoBehaviour
     {
 
 
-        Debug.Log(agent.remainingDistance);
         tileToTurn = new Tuple<Vector3Int, TileBase>(pos, tile);
     }
 
