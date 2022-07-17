@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     public GameObject NavmeshPrefab;
     public List<Fire> growingFires;
     public List<Fire> dyingFires;
-    
+    Tuple<Vector3Int, TileBase> tileToTurn = null;
     
 
 
@@ -60,6 +60,38 @@ public class Movement : MonoBehaviour
             Vector3Int tilePos = Vector3Int.FloorToInt(target);
             CreateFire(tilePos, 4, true);
         }*/
+
+        if(agent.remainingDistance < 0.1f && tileToTurn != null)
+        {
+            Vector3Int[] sides = { new Vector3Int(1, 0, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(0, -1, 0) };
+            bool flag = false;
+            foreach (Vector3Int side in sides)
+            {
+                Vector3Int neighbourPos = side + tileToTurn.Item1;
+                TileBase uTile = Movement.player.unmovableMap.GetTile(neighbourPos);
+                if (uTile != null)
+                {
+                    if (uTile.name == "Fire" + tileToTurn.Item2.name[0].ToString())
+                    {
+                        flag = true;
+                    }
+
+                }
+
+            }
+            if (flag)
+            {
+
+                Movement.player.CreateFire(tileToTurn.Item1, Int32.Parse(tileToTurn.Item2.name[0].ToString()), true);
+            }
+            else
+            {
+
+
+                diceMap.SetTile(tileToTurn.Item1, tileToTurn.Item2);
+            }
+            tileToTurn = null;
+        }
     }
 
     void LeftMouseClicked()
@@ -77,6 +109,7 @@ public class Movement : MonoBehaviour
             Int32 temp;
             if (Int32.TryParse(theTile.name[0].ToString(), out temp))
             {
+                tileToTurn = null;
                 turnSelectionMenu = Instantiate(turnSelectionUIPrefab);
                 RollSelectorManager selectorManager = turnSelectionMenu.GetComponent<RollSelectorManager>();
                 selectorManager.currentDie = new Die(theTile, tilePos);
@@ -87,13 +120,16 @@ public class Movement : MonoBehaviour
         }
 
 
-        
+        tileToTurn = null;
         agent.destination = target;
     }
 
-    public void SetDie(TileBase tile, Vector3Int pos)
+    public void TurnDie(TileBase tile, Vector3Int pos)
     {
-        diceMap.SetTile(pos, tile);
+
+
+
+        tileToTurn = new Tuple<Vector3Int, TileBase>(pos, tile);
     }
 
     public void CreateFire(Vector3Int position, int number, bool movable)

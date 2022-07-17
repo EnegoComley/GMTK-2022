@@ -37,12 +37,12 @@ public class RollSelectorManager : MonoBehaviour
         agent.CalculatePath(leftPos, leftPath);
         NavMeshPath rightPath = new NavMeshPath();
         agent.CalculatePath(rightPos, rightPath);
-        if((downPath.status != NavMeshPathStatus.PathComplete || Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(downPos)) != null)  && (upPath.status != NavMeshPathStatus.PathComplete || Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(upPos)) != null))
+        if((downPath.status != NavMeshPathStatus.PathComplete || (Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(downPos)) != null || Movement.player.unmovableMap.GetTile(Vector3Int.FloorToInt(downPos)) != null))  && (upPath.status != NavMeshPathStatus.PathComplete || (Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(upPos)) != null || Movement.player.unmovableMap.GetTile(Vector3Int.FloorToInt(upPos)) != null)))
         {
             upButton.GetComponent<Button>().interactable = false;
             downButton.GetComponent<Button>().interactable = false;
         }
-        if ((leftPath.status != NavMeshPathStatus.PathComplete || Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(leftPos)) != null) && (rightPath.status != NavMeshPathStatus.PathComplete || Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(rightPos)) != null))
+        if ((leftPath.status != NavMeshPathStatus.PathComplete || (Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(leftPos)) != null || Movement.player.unmovableMap.GetTile(Vector3Int.FloorToInt(leftPos)) != null)) && (rightPath.status != NavMeshPathStatus.PathComplete || (Movement.player.diceMap.GetTile(Vector3Int.FloorToInt(rightPos)) != null || Movement.player.unmovableMap.GetTile(Vector3Int.FloorToInt(rightPos)) != null)))
         {
             leftButton.GetComponent<Button>().interactable = false;
             rightButton.GetComponent<Button>().interactable = false;
@@ -69,37 +69,32 @@ public class RollSelectorManager : MonoBehaviour
                 break;
             }
         }
-        Vector3Int[] sides = { new Vector3Int(1, 0, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(0, -1, 0) };
-        bool flag = false;
-        foreach (Vector3Int side in sides)
-        {
-            bool movable = false;
-            Vector3Int neighbourPos = side + currentDie.pos;
-            TileBase uTile = Movement.player.unmovableMap.GetTile(neighbourPos);
-            if (uTile != null)
-            {
-                Debug.Log(uTile.name);
-                if (uTile.name == "Fire" + name[0].ToString())
-                {
-                    Debug.Log("Yo");
-                    flag = true;
-                }
-                
-            }
-            
-        }
-        if(flag)
-        {
-
-            Movement.player.CreateFire(currentDie.pos, Int32.Parse(name[0].ToString()), true);
-        }
-        else
-        {
-            Movement.player.SetDie(tile, currentDie.pos);
-        }
         
+        List<Vector3Int> sides = new List<Vector3Int>();
+        if (direction == "TurnUp" || direction == "TurnDown")
+        {
+            sides.Add(new Vector3Int(0, 1, 0) + currentDie.pos);
+            sides.Add(new Vector3Int(0, -1, 0) + currentDie.pos);
+        } else
+        {
+            sides.Add(new Vector3Int(1, 0, 0) + currentDie.pos);
+            sides.Add(new Vector3Int(-1, 0, 0) + currentDie.pos);
+        }
+        NavMeshPath pathA = new NavMeshPath();
+        Movement.player.agent.CalculatePath(sides[0], pathA);
+        NavMeshPath pathB = new NavMeshPath();
+        Movement.player.agent.CalculatePath(sides[1], pathB);
+        Movement.player.agent.SetPath(pathA);
+        float distanceA = Movement.player.agent.remainingDistance;
+        Movement.player.agent.SetPath(pathB);
+        float distanceB = Movement.player.agent.remainingDistance;
+        if (distanceA < distanceB)
+        {
+            Movement.player.agent.SetPath(pathA);
 
-        
+        }
+        Movement.player.TurnDie(tile, currentDie.pos);
+
 
         CloseMenu();
     }
