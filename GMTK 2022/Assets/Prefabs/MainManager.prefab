@@ -85,6 +85,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ee0fc5c0f5c19944820d2e91c12fc88, type: 2}
   - {fileID: 11400000, guid: 2ba1e745a2c83264095e015f75a2474a, type: 2}
   - {fileID: 11400000, guid: 83da41b9abde2c847a477f31cb107988, type: 2}
+  scene: 0
 --- !u!114 &7226088717574389879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +101,7 @@ MonoBehaviour:
   source: {fileID: 8484883591926423248}
   clips:
   - {fileID: 8300000, guid: c6b22a65d7143424e81b922e09cfa76b, type: 3}
+  - {fileID: 8300000, guid: adfa6abb37a843f4291af8fe79189342, type: 3}
 --- !u!82 &8484883591926423248
 AudioSource:
   m_ObjectHideFlags: 0
