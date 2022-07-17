@@ -124,6 +124,15 @@ public class Movement : MonoBehaviour
         agent.destination = target;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("yolol");
+        if(collision.gameObject.tag == "Finish")
+        {
+            MainManager.manager.NextLevel();
+        }
+    }
+
     public void TurnDie(TileBase tile, Vector3Int pos)
     {
 

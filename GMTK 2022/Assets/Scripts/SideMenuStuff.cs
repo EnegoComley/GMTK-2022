@@ -37,7 +37,16 @@ public class SideMenuStuff : MonoBehaviour
         Int32 temp;
         if (theTile != null && Movement.player.turnSelectionMenu == null && Int32.TryParse(theTile.name[0].ToString(), out temp))
         {
-            
+            if(!centerButton.activeSelf)
+            {
+                centerButton.SetActive(true);
+                upButton.SetActive(true);
+                downButton.SetActive(true);
+                leftButton.SetActive(true);
+                rightButton.SetActive(true);
+                underButton.SetActive(true);
+}
+
             Die newDie = new Die(theTile, tilePos);
 
 

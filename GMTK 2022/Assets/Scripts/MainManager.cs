@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
+using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class MainManager : MonoBehaviour
     public TileBase[] movableDice;
     public TileBase[] fireDice;
     public TileBase[] unmovableFireDice;
-    
+    public int scene = 0;
+
 
     private void Awake()
     {
@@ -30,10 +32,24 @@ public class MainManager : MonoBehaviour
         
     }
 
+    public void RetryLevel()
+    {
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+    }
+
+    public void NextLevel()
+    {
+        scene++;
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyUp(KeyCode.R))
+        {
+            RetryLevel();
+        }   
     }
 }
 
