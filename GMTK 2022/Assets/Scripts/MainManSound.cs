@@ -6,6 +6,7 @@ public class MainManSound : MonoBehaviour
 {
     public static MainManSound manager;
     public AudioSource source;
+
     public AudioClip[] clips;
 
     private void Awake()
